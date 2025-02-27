@@ -6,9 +6,11 @@ interface DarkModeState {
 }
 
 export const useDarkModeStore = create<DarkModeState>((set) => ({
-  isDarkMode: localStorage.getItem('darkMode') === 'true',
+  isDarkMode: false,
   setDarkMode: (isDarkMode: boolean) => {
-    localStorage.setItem('darkMode', isDarkMode.toString());
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('darkMode', isDarkMode.toString());
+    }
     set({ isDarkMode });
   }
 }))

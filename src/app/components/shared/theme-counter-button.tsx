@@ -2,10 +2,12 @@
 import { useDarkModeStore } from '@/app/store/darkMode';
 import { useToastStore } from '@/app/store/toast';
 import React, { useEffect, useState } from 'react'
+import Toast from '../toast/toast';
 
 const ThemeCounterButton = () => {
   const [count, setCount] = useState(1);
   const { isDarkMode, setDarkMode } = useDarkModeStore();
+  const { message, setMessage, isOn, setIsOn } = useToastStore();
 
   //localStorage에 저장된 count값을 호출하여 useState 초기값으로 설정
   useEffect(() => {
@@ -53,10 +55,14 @@ const ThemeCounterButton = () => {
   }
 
   return (
-    <div>
-      <button onClick={handleDecrement}>-</button>
-      <span>{count}</span>
-      <button onClick={handleIncrement}>+</button>
+    <div className='flex items-center justify-center gap-4' draggable>
+      <button
+        className={`w-12 h-12 rounded-lg text-white justify-center items-center ${isDarkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-blue-500 hover:bg-blue-400'} transition duration-200`}
+        onClick={handleDecrement}>-</button>
+      <span className='text-2xl'>{count}</span>
+      <button
+        className={`w-12 h-12 rounded-lg text-white justify-center items-center ${isDarkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-blue-500 hover:bg-blue-400'} transition duration-200`}
+        onClick={handleIncrement}>+</button>
     </div>
   )
 }
