@@ -1,34 +1,33 @@
 'use client'
+import { useDarkModeStore } from '@/app/store/darkMode';
+import { useToastStore } from '@/app/store/toast';
 import React, { useEffect, useState } from 'react'
 
 const ThemeCounterButton = () => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
+  const { isDarkMode, setDarkMode } = useDarkModeStore();
 
+  //localStorage에 저장된 count값을 호출하여 useState 초기값으로 설정
   useEffect(() => {
     const savedCount = localStorage.getItem('count');
-    const savedDarkMode = localStorage.getItem('darkMode');
-
     if (savedCount) {
       setCount(Number(savedCount))
     }
-
-    if (savedDarkMode === 'true') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
   }, [])
 
+  //count가 5 이상일 때, 다크모드 적용. 
   useEffect(() => {
     const darkMode = count >= 5;
-    localStorage.setItem('darkMode', darkMode.toString());
+    setDarkMode(darkMode);
+  }, [count, setDarkMode]);
 
-    if (darkMode) {
+  useEffect(() => {
+    if (isDarkMode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-  }, [count]);
+  }, [isDarkMode]);
 
   const handleIncrement = () => {
     setCount((prevCount) => {
@@ -44,19 +43,20 @@ const ThemeCounterButton = () => {
   const handleDecrement = () => {
     setCount((prevCount) => {
       const currentCount = prevCount - 1;
-      if (currentCount >= 0) {
+      if (currentCount > 0) {
         localStorage.setItem('count', currentCount.toString())
         return currentCount
+      } else {
+        return prevCount;
       }
-      return prevCount;
     });
   }
 
   return (
     <div>
-      <button disabled={count < 1} onClick={handleDecrement}>-</button>
+      <button onClick={handleDecrement}>-</button>
       <span>{count}</span>
-      <button disabled={count > 9} onClick={handleIncrement}>+</button>
+      <button onClick={handleIncrement}>+</button>
     </div>
   )
 }
