@@ -2,7 +2,6 @@
 import { useDarkModeStore } from '@/app/store/darkMode';
 import { useToastStore } from '@/app/store/toast';
 import React, { useEffect, useState } from 'react'
-import Toast from '../toast/toast';
 
 const ThemeCounterButton = () => {
   const [count, setCount] = useState(1);
@@ -32,35 +31,29 @@ const ThemeCounterButton = () => {
     }
   }, [isDarkMode]);
 
+  const showToast = (message: string) => {
+    setMessage(message);
+    setType('error');
+    setIsOn(true);
+  };
+
   const handleIncrement = () => {
-    setCount((prevCount) => {
-      const currentCount = prevCount + 1;
-      if (currentCount <= 10) {
-        localStorage.setItem('count', currentCount.toString())
-        return currentCount
-      } else {
-        setMessage('최댓값은 10입니다.');
-        setType('error');
-        setIsOn(true);
-      }
-      return prevCount;
-    });
-  }
+    if (count >= 10) {
+      showToast('최댓값은 10입니다.');
+      return;
+    }
+    setCount(count + 1);
+    localStorage.setItem('count', (count + 1).toString());
+  };
 
   const handleDecrement = () => {
-    setCount((prevCount) => {
-      const currentCount = prevCount - 1;
-      if (currentCount > 0) {
-        localStorage.setItem('count', currentCount.toString())
-        return currentCount
-      } else {
-        setMessage('최소값은 1입니다.');
-        setType('error');
-        setIsOn(true);
-        return prevCount;
-      }
-    });
-  }
+    if (count <= 1) {
+      showToast('최소값은 1입니다.');
+      return;
+    }
+    setCount(count - 1);
+    localStorage.setItem('count', (count - 1).toString());
+  };
 
   return (
     <div className='flex items-center justify-center gap-4' draggable>

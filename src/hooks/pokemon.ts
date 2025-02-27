@@ -12,5 +12,6 @@ export const usePokemonData = (limit: number, offset: number) => {
   return useQuery({
     queryKey: ['pokemon', limit, offset],
     queryFn: () => fetchPokemon(limit, offset),
+    enabled: limit > 0,
   })
 }
