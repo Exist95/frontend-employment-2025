@@ -25,7 +25,6 @@ interface CommonLayoutProps {
   title: string;
 }
 
-
 export default function CommonLayout({ children, title }: CommonLayoutProps) {
 
   return (

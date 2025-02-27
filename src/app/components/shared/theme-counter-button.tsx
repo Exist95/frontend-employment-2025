@@ -1,10 +1,10 @@
 'use client'
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const ThemeCounterButton = () => {
   const [count, setCount] = useState(0);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const savedCount = localStorage.getItem('count');
     const savedDarkMode = localStorage.getItem('darkMode');
 
@@ -19,7 +19,7 @@ const ThemeCounterButton = () => {
     }
   }, [])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const darkMode = count >= 5;
     localStorage.setItem('darkMode', darkMode.toString());
 
