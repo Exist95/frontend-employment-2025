@@ -33,7 +33,7 @@ export default function CommonLayout({ children, title }: CommonLayoutProps) {
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-gray-800 dark:text-white flex flex-col justify-center items-center p-4`} >
         <h1 className="text-2xl font-bold mb-4">{title}</h1>
         <ThemeCounterButton />
-        {/* <Toast /> */}
+        <Toast />
         <TanstackQueryProvider>{children}</TanstackQueryProvider>
       </body>
     </html>

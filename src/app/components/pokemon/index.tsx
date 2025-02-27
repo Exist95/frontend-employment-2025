@@ -17,6 +17,8 @@ const PokemonPage = () => {
     setOffset(Number(e.target.value))
   }
 
+  //검색 버튼 생성 후, 검색버튼을 누르면 리스트가 나오게 만드는 건 어떨까?
+
   return (
     <div className='flex flex-col w-full mt-4'>
 

@@ -7,7 +7,7 @@ import Toast from '../toast/toast';
 const ThemeCounterButton = () => {
   const [count, setCount] = useState(1);
   const { isDarkMode, setDarkMode } = useDarkModeStore();
-  const { message, setMessage, isOn, setIsOn } = useToastStore();
+  const { setMessage, setIsOn, setType } = useToastStore();
 
   //localStorage에 저장된 count값을 호출하여 useState 초기값으로 설정
   useEffect(() => {
@@ -23,6 +23,7 @@ const ThemeCounterButton = () => {
     setDarkMode(darkMode);
   }, [count, setDarkMode]);
 
+
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
@@ -37,6 +38,10 @@ const ThemeCounterButton = () => {
       if (currentCount <= 10) {
         localStorage.setItem('count', currentCount.toString())
         return currentCount
+      } else {
+        setMessage('최댓값은 10입니다.');
+        setType('error');
+        setIsOn(true);
       }
       return prevCount;
     });
@@ -49,6 +54,9 @@ const ThemeCounterButton = () => {
         localStorage.setItem('count', currentCount.toString())
         return currentCount
       } else {
+        setMessage('최소값은 1입니다.');
+        setType('error');
+        setIsOn(true);
         return prevCount;
       }
     });
