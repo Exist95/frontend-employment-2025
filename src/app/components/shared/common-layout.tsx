@@ -31,12 +31,14 @@ export default function CommonLayout({ children, title }: CommonLayoutProps) {
 
   return (
     <html lang="ko">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-gray-800 dark:text-white flex flex-col justify-center items-center p-4`} >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-gray-800 dark:text-white flex flex-col`} >
         <NavigationBar />
-        <h1 className="text-2xl font-bold mb-4">{title}</h1>
         <ThemeCounterButton />
+        <h1 className="text-2xl font-bold mb-4">{title}</h1>
+        <div className='p-2 flex-grow pb-24'>
+          <TanstackQueryProvider>{children}</TanstackQueryProvider>
+        </div>
         <Toast />
-        <TanstackQueryProvider>{children}</TanstackQueryProvider>
       </body>
     </html>
   )

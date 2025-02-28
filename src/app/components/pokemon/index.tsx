@@ -31,8 +31,8 @@ const PokemonPage = () => {
   //필터기능 추가?
 
   return (
-    <div className='flex flex-col w-full mt-4'>
-      <div className='flex justify-center items-center gap-5'>
+    <div className='flex flex-col w-full my-4'>
+      <div className='flex justify-center items-center gap-5 max-sm:flex-col'>
         <Input id='limit' label='limit' type='text' value={limit} onChange={handleLimitChange} />
         <Input id='offset' label='offset' type='text' value={offset} onChange={handleOffsetChange} />
         <button

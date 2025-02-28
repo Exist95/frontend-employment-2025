@@ -10,7 +10,7 @@ const Toast = () => {
       const timer = setTimeout(() => {
         setIsOn(false)
         resetToast();
-      }, 1000);
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [isOn, resetToast, setIsOn]);

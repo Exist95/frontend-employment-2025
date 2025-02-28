@@ -56,10 +56,17 @@ const ThemeCounterButton = () => {
   };
 
   return (
-    <div className='flex items-center justify-center gap-4' draggable>
-      <Button size='md' onClick={handleDecrement} value='-' />
-      <span className='text-md font-semibold'>{count}</span>
-      <Button size='md' onClick={handleIncrement} value='+' />
+    <div className='fixed flex flex-col items-center justify-center gap-4 w-36 h-28 p-3 rounded-2xl  shadow-lg bg-gray-100 dark:bg-gray-900 top-24 right-2 max-sm:top-44'
+    >
+      <span>{count > 4 ? '다크모드' : '라이트모드'}</span>
+      <span className="absolute top-0 left-0 inline-flex h-2 w-2 animate-ping rounded-full bg-sky-400 opacity-75"></span>
+      <div className='flex items-center justify-between gap-2 w-full'>
+        <Button size='md' onClick={handleDecrement} value='-' />
+        <span className='text-md font-semibold'>{count}</span>
+        <Button size='md' onClick={handleIncrement} value='+' />
+      </div>
+
+
     </div>
   )
 }
