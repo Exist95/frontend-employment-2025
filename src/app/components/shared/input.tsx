@@ -12,7 +12,6 @@ interface InputProps {
 
 const Input = ({ id, label, value, onChange, type, min = 1 }: InputProps) => {
 
-
   return (
     <div className="flex gap-2 items-center justify-center">
       <label htmlFor={id} className="text-xl">{label}:</label>

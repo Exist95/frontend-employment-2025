@@ -5,6 +5,7 @@ import '@/app/globals.css'
 import { TanstackQueryProvider } from '@/configs/tanstack-query/provider';
 import ThemeCounterButton from './theme-counter-button';
 import Toast from '../toast/toast';
+import NavigationBar from './navigation-bar';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -31,6 +32,7 @@ export default function CommonLayout({ children, title }: CommonLayoutProps) {
   return (
     <html lang="ko">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-gray-800 dark:text-white flex flex-col justify-center items-center p-4`} >
+        <NavigationBar />
         <h1 className="text-2xl font-bold mb-4">{title}</h1>
         <ThemeCounterButton />
         <Toast />
