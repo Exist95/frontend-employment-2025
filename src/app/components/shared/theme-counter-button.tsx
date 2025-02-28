@@ -2,6 +2,7 @@
 import { useDarkModeStore } from '@/app/store/darkMode';
 import { useToastStore } from '@/app/store/toast';
 import React, { useEffect, useState } from 'react'
+import Button from './button';
 
 const ThemeCounterButton = () => {
   const [count, setCount] = useState(1);
@@ -21,7 +22,6 @@ const ThemeCounterButton = () => {
     const darkMode = count >= 5;
     setDarkMode(darkMode);
   }, [count, setDarkMode]);
-
 
   useEffect(() => {
     if (isDarkMode) {
@@ -57,13 +57,9 @@ const ThemeCounterButton = () => {
 
   return (
     <div className='flex items-center justify-center gap-4' draggable>
-      <button
-        className={`w-12 h-12 rounded-lg text-white justify-center items-center ${isDarkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-blue-500 hover:bg-blue-400'} transition duration-200`}
-        onClick={handleDecrement}>-</button>
-      <span className='text-2xl'>{count}</span>
-      <button
-        className={`w-12 h-12 rounded-lg text-white justify-center items-center ${isDarkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-blue-500 hover:bg-blue-400'} transition duration-200`}
-        onClick={handleIncrement}>+</button>
+      <Button size='md' onClick={handleDecrement} value='-' />
+      <span className='text-md font-semibold'>{count}</span>
+      <Button size='md' onClick={handleIncrement} value='+' />
     </div>
   )
 }

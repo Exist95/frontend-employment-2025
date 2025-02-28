@@ -19,7 +19,7 @@ const Toast = () => {
 
   return (
     <div
-      className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 p-4 rounded-lg transition-all duration-500 ease-in-out w-fit ${isOn
+      className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 p-4 rounded-lg transition-all duration-500 ease-in-out min-w-[400px] max-w-fit ${isOn
         ? "opacity-100 translate-y-0"
         : "opacity-0 translate-y-full pointer-events-none"
         } ${type === "error" ? "bg-red-500" : "bg-blue-500"} `}
