@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type ToastType = 'success' | 'error' | 'info';
+export type ToastType = 'success' | 'error';
 
 interface ToastState {
   isOn: boolean;
@@ -9,6 +9,7 @@ interface ToastState {
   setIsOn: (isOn: boolean) => void;
   setMessage: (message: string) => void;
   setType: (type: ToastType) => void;
+  showToast: (message: string, type: ToastType) => void;
   resetToast: () => void;
 }
 
@@ -17,7 +18,8 @@ export const useToastStore = create<ToastState>((set) => ({
   setIsOn: (IsOn: boolean) => set({ isOn: IsOn }),
   message: '',
   setMessage: (message: string) => set({ message }),
-  type: 'info',
+  type: 'success',
   setType: (type: ToastType) => set({ type }),
-  resetToast: () => set({ message: '', type: 'info' }),
+  showToast: (message, type = 'success') => set({ message, type, isOn: true }),
+  resetToast: () => set({ message: '', type: 'success' }),
 }))

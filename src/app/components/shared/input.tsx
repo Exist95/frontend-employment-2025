@@ -6,11 +6,12 @@ interface InputProps {
   label: string;
   value: number | string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   min?: number;
   type: string;
 }
 
-const Input = ({ id, label, value, onChange, type, min = 1 }: InputProps) => {
+const Input = ({ id, label, value, onChange, onKeyDown, type, min = 1 }: InputProps) => {
 
   return (
     <div className="flex gap-2 items-center justify-center">
@@ -22,6 +23,7 @@ const Input = ({ id, label, value, onChange, type, min = 1 }: InputProps) => {
         value={value}
         min={min}
         onChange={onChange}
+        onKeyDown={onKeyDown}
       />
     </div>
   )

@@ -1,8 +1,9 @@
 import React from 'react'
+import SignInClient from './client'
 
 const SignIn = () => {
   return (
-    <div>SignIn</div>
+    <SignInClient />
   )
 }
 

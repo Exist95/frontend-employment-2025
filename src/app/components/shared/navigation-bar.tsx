@@ -12,7 +12,6 @@ const links = [
 ]
 
 const NavigationBar = () => {
-
   return (
     <nav className="relative w-full flex justify-between items-center p-4 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md mb-6 max-sm:flex-col">
       <h1 className="text-xl font-bold">위팩토리</h1>

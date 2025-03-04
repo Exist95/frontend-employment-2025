@@ -1,9 +1,9 @@
-import PokemonPage from '@/app/components/pokemon'
 import React from 'react'
+import PokemonsClient from './client'
 
 const Pokemons = () => {
   return (
-    <PokemonPage />
+    <PokemonsClient />
   )
 }
 
