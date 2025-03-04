@@ -7,10 +7,12 @@ import Button from './button';
 const ThemeCounterButton = () => {
   const [count, setCount] = useState(1);
   const { isDarkMode, setDarkMode } = useDarkModeStore();
+  const [isMounted, setIsMounted] = useState(false);
   const { showToast } = useToastStore();
 
   //localStorage에 저장된 count값을 호출하여 useState 초기값으로 설정
   useEffect(() => {
+    setIsMounted(true);
     const savedCount = localStorage.getItem('count');
     if (savedCount) {
       setCount(Number(savedCount))
@@ -24,12 +26,14 @@ const ThemeCounterButton = () => {
   }, [count, setDarkMode]);
 
   useEffect(() => {
+    if (!isMounted) return;
+
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-  }, [isDarkMode]);
+  }, [isDarkMode, isMounted]);
 
   const handleIncrement = () => {
     if (count >= 10) {
@@ -50,7 +54,7 @@ const ThemeCounterButton = () => {
   };
 
   return (
-    <div className='fixed flex flex-col items-center justify-center gap-4 w-36 h-28 p-3 rounded-2xl shadow-lg bg-gray-100 dark:bg-gray-900 bottom-8 right-2 max-sm:top-44'>
+    <div className='fixed flex flex-col items-center justify-center gap-4 w-36 h-28 p-3 rounded-2xl shadow-lg bg-gray-100 dark:bg-gray-900 bottom-8 right-2'>
       <span>{count > 4 ? '다크모드' : '라이트모드'}</span>
       <span className="absolute top-0 left-0 inline-flex h-2 w-2 animate-ping rounded-full bg-sky-400 opacity-75"></span>
       <div className='flex items-center justify-between gap-2 w-full'>

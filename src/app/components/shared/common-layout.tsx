@@ -4,8 +4,8 @@ import React from 'react'
 import '@/app/globals.css'
 import { TanstackQueryProvider } from '@/configs/tanstack-query/provider';
 import ThemeCounterButton from './theme-counter-button';
-import Toast from '../toast/toast';
 import NavigationBar from './navigation-bar';
+import Toast from './toast';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
