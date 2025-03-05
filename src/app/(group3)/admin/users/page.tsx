@@ -1,8 +1,9 @@
 import React from 'react'
+import UsersClient from './client'
 
 const AdminUsers = () => {
   return (
-    <div>AdminUsers</div>
+    <UsersClient />
   )
 }
 
