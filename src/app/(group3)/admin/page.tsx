@@ -1,8 +1,8 @@
-import React from 'react'
+import AdminClient from './client'
 
 const Admin = () => {
   return (
-    <div>Admin</div>
+    <AdminClient />
   )
 }
 
