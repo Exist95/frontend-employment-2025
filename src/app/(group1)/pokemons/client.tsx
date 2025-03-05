@@ -2,27 +2,36 @@
 import { usePokemonData } from '@/hooks/pokemon';
 import Image from 'next/image';
 import React, { useState } from 'react'
-import { useDarkModeStore } from '@/app/store/darkMode';
 import { useQueryClient } from '@tanstack/react-query';
 import { useToastStore } from '@/app/store/toast';
 import Input from '@/app/components/shared/input';
+import Button from '@/app/components/shared/button';
 
 const PokemonsClient = () => {
   const [limit, setLimit] = useState(20);
   const [offset, setOffset] = useState(0);
-  const { isDarkMode } = useDarkModeStore();
   const queryClient = useQueryClient()
   const { showToast } = useToastStore();
 
   const { data, isLoading, isError, error, refetch } = usePokemonData(limit, offset)
 
   const handleLimitChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLimit(Number(e.target.value))
+    const value = e.target.value;
+    if (!/^\d*$/.test(value)) {
+      showToast('숫자만 입력할 수 있습니다.', 'error');
+      return;
+    }
+    setLimit(Number(value))
     queryClient.removeQueries({ queryKey: ['pokemon'] });
   }
 
   const handleOffsetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setOffset(Number(e.target.value))
+    const value = e.target.value;
+    if (!/^\d*$/.test(value)) {
+      showToast('숫자만 입력할 수 있습니다.', 'error');
+      return;
+    }
+    setOffset(Number(value));
     queryClient.removeQueries({ queryKey: ['pokemon'] });
   }
 
@@ -45,14 +54,12 @@ const PokemonsClient = () => {
   }
 
   return (
-    <div className='flex flex-col w-full my-4'>
-      <div className='flex justify-center items-center gap-5 max-sm:flex-col'>
+    <div className='flex flex-col justify-center items-center w-full my-4'>
+      <div className='flex flex-col w-80 justify-center items-center gap-5'>
         <Input id='limit' label='limit' type='text' value={limit} onChange={handleLimitChange} onKeyDown={handleKeyDown} />
         <Input id='offset' label='offset' type='text' value={offset} onChange={handleOffsetChange} onKeyDown={handleKeyDown} />
-        <button
-          className={`w-12 h-12 rounded-lg text-white justify-center items-center ${isDarkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-blue-500 hover:bg-blue-400'} transition duration-200`}
-          onClick={handleSearchChange}>검색
-        </button>
+        <Button size='full' value='검색' onClick={handleSearchChange}
+        />
       </div>
 
       {isError && <p>오류 발생: {error instanceof Error ? error.message : 'Unknown error'}</p>}
