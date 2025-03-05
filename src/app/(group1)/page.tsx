@@ -1,7 +1,7 @@
+import HomeClient from "./client";
+
 export default function Home() {
   return (
-    <section>
-      Home
-    </section>
+    <HomeClient />
   );
 }
