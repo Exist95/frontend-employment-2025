@@ -5,7 +5,7 @@ import React from 'react'
 
 interface ButtonProps {
   onClick?: () => void;
-  size: 'sm' | 'md' | 'lg' | 'rectangle';
+  size: 'sm' | 'md' | 'lg' | 'full';
   value: string;
   type?: 'button' | 'link';
   link?: string;
@@ -15,7 +15,7 @@ const sizeClass = {
   sm: 'w-4 h-4 text-sm',
   md: 'w-8 h-8 text-md',
   lg: 'w-12 h-12 text-lg',
-  rectangle: 'min-w-20 max-w-fit h-8'
+  full: 'w-full h-16'
 }
 
 const Button = ({ onClick, size, value, type = 'button', link }: ButtonProps) => {
